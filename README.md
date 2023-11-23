@@ -25,10 +25,8 @@ pip install -r requirements.txt
 ```
 scrapy crawl pep
 ```
-- Будет создана папка results в директории scrapy_parser_pep и в ней два файла c примерным наименованием:
-pep_2023-11-23T11-36-34.csv
-status_summary_2023-11-23_14-36-41.csv
-```
+Будет создана папка results в директории scrapy_parser_pep и в ней два файла c примерным наименованием:
+pep_2023-11-23T11-36-34.csv; status_summary_2023-11-23_14-36-41.csv
 
 ### Обратная связь
 Контакт: [Жанна Ивашова](https://github.com/ZhannaIvashova)
