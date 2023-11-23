@@ -1,18 +1,21 @@
 import scrapy
 
 from pep_parse.items import PepParseItem
+from pep_parse.settings import ALLOWED_DOMAINS, NAME, STARS_URLS
 
 
 class PepSpider(scrapy.Spider):
-    name = 'pep'
-    allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    name = NAME
+    allowed_domains = ALLOWED_DOMAINS
+    start_urls = STARS_URLS
 
     def parse(self, response):
         all_peps = response.css(
             '#numerical-index a.pep.reference.internal::attr(href)'
         ).getall()
         for pep_link in all_peps:
+            if not pep_link.endswith('/'):
+                pep_link += '/'
             yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):

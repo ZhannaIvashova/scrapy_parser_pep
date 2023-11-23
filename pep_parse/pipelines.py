@@ -30,7 +30,10 @@ class PepParsePipeline:
                 csvfile, dialect=csv.unix_dialect,
                 quoting=csv.QUOTE_NONE, escapechar='\\'
             )
-            writer.writerow(('Статус', 'Количество'))
-            for status, count in self.count.items():
-                writer.writerow([status, count])
-            writer.writerow(('Всего', sum(self.count.values())))
+            results = [('Статус', 'Количество')]
+            results.extend(
+                [(status, count) for status, count in self.count.items()]
+            )
+            results.append(('Всего', sum(self.count.values())))
+
+            writer.writerows(results)
